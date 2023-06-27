@@ -1,5 +1,11 @@
-import { nameValidator } from './common'
 import { handleInputErrors } from '../modules/middleware'
+import { body } from 'express-validator'
 
-export const editProductValidators = [nameValidator, handleInputErrors]
-export const addProductValidators = [nameValidator, handleInputErrors]
+export const editProductValidators = [
+    body('name').exists().isString(),
+    handleInputErrors
+]
+export const addProductValidators = [
+    body('name').exists().isString(),
+    handleInputErrors
+]

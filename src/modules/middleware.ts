@@ -15,3 +15,18 @@ export const handleInputErrors = (
         next()
     }
 }
+
+export const catchErrors = (
+    error: NodeJS.ErrnoException,
+    req: Request,
+    res: Response,
+    next: NextFunction
+) => {
+    if (error.name === 'auth') {
+        res.status(401).json({ message: 'Unauthorized' })
+    } else if (error.name === 'input') {
+        res.status(400).json({ message: 'Invalid input' })
+    } else {
+        res.status(500).json({ message: 'Server error' })
+    }
+}

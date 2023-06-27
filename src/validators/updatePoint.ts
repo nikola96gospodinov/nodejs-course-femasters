@@ -1,9 +1,8 @@
 import { body } from 'express-validator'
-import { nameValidator } from './common'
 import { handleInputErrors } from '../modules/middleware'
 
 export const addUpdatePointValidators = [
-    nameValidator,
+    body('name').exists().isString(),
     body('description').exists().isString(),
     body('updateId').exists().isString(),
     handleInputErrors
